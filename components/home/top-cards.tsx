@@ -34,7 +34,7 @@ export function TopCards() {
                             </IconWrapper>
                             <span className="text-lg text-contrast-low">{card.title}</span>
                         </div>
-                        <h1 className="flex items-baseline gap-1 font-sans text-3xl text-contrast-high">
+                        <h1 className="font-sans text-3xl text-contrast-high text-ellipsis whitespace-nowrap overflow-hidden">
                             <NumberFlow
                                 value={card.value}
                                 format={{

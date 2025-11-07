@@ -2,8 +2,10 @@ import { HomeContent } from "@/components/home/home-content";
 
 export default function Home() {
   return (
-    <main className="w-full max-w-6xl mx-auto px-3 py-5">
-      <HomeContent />
+    <main className="px-5 py-5 md:px-6">
+      <div className="w-full max-w-6xl mx-auto px-0 md:px-3">
+        <HomeContent />
+      </div>
     </main>
   );
 }
