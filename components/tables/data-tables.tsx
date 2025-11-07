@@ -8,13 +8,11 @@ import {
 import { HeaderGroup, Header, Table as TableType } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 import NoResults from "@/components/ui/no-results";
-import { cn } from "@/lib/utils";
 import HeaderCell from "../ui/table-header-cell";
 
 type DataTableProps<T> = {
   table: TableType<T>;
   pageSize?: number;
-  handleRowClick?: (e: React.MouseEvent, address: string) => void;
   currentPage: number;
   slice?: boolean;
 };
@@ -22,7 +20,6 @@ type DataTableProps<T> = {
 function DataTable<T>({
   table,
   pageSize,
-  handleRowClick,
   currentPage,
   slice = false,
 }: DataTableProps<T>) {
@@ -62,11 +59,7 @@ function DataTable<T>({
             <TableRow
               key={row.id}
               data-state={row.getIsSelected() && "selected"}
-              className={cn("h-12", handleRowClick && "cursor-pointer")}
-              onClick={(e) =>
-                handleRowClick &&
-                handleRowClick(e, (row.original as any).address)
-              }
+              className="h-12"
               style={{
                 width: row
                   .getVisibleCells()
