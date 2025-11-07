@@ -16,7 +16,7 @@ const menuItems = [
 
 export default function Header() {
   const pathname = usePathname();
-  const { setOpenMobile, openMobile } = useSidebar();
+  const { setOpenMobile, openMobile, toggleSidebar, isMobile } = useSidebar();
 
   const currentPathname = useMemo(() => {
     return menuItems.find((item) => item.href === pathname);
@@ -29,7 +29,7 @@ export default function Header() {
           "relative flex items-center px-5 py-5 transition-colors duration-200 ease-out md:px-6"
         )}
       >
-        <div className="container mx-auto px-0 md:px-3">
+        <div className="w-full max-w-6xl mx-auto px-0 md:px-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <h1 className="text-contrast-low hidden text-sm font-medium md:flex">
@@ -50,8 +50,8 @@ export default function Header() {
 
             <div className="flex items-center gap-6">
               <motion.button
-                className="flex md:hidden"
-                onClick={() => setOpenMobile(!openMobile)}
+                className="flex lg:hidden"
+                onClick={() => isMobile ? setOpenMobile(!openMobile) : toggleSidebar()}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
                   {openMobile ? (
