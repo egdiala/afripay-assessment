@@ -1,0 +1,1 @@
+export const APP_TRANSACTIONS_STORAGE_KEY = "transactions"
