@@ -47,7 +47,7 @@ export function TransactionTable() {
     
     return (
         <div>
-            <div className="border border-contrast-high-10 relative rounded-lg">
+            <div className="grid border border-contrast-high-10 relative rounded-lg">
                 <DataTable
                     table={table}
                     pageSize={pageSize}

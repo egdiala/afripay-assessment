@@ -52,7 +52,7 @@ function DataTable<T>({
         {table.getRowModel().rows.length === 0 ? (
           <NoResults
             colSpan={table.getAllColumns().length}
-            message="No results found."
+            message="No transactions found."
           />
         ) : (
           tableData.map((row, rowIndex) => (
