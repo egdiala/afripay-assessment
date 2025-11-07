@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@workspace/ui/components/button";
-import { ChevronLeftIcon, ChevronRightIcon } from "../icons/general";
+import { Button } from "@/components/ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 interface Props {
   currentPage: number;
@@ -36,22 +36,22 @@ export default function Pagination({
       </div>
       <div className="flex items-center gap-2">
         <Button
-          variant="custom"
+          variant="secondary"
           size={"icon"}
           className="light:inset-shadow-transparent"
           disabled={currentPage === 1}
           onClick={() => onPageChange(currentPage - 1)}
         >
-          {ChevronLeftIcon}
+          <ChevronLeftIcon />
         </Button>
         <Button
-          variant="custom"
+          variant="secondary"
           size={"icon"}
           className="light:inset-shadow-transparent"
           disabled={currentPage === Math.ceil(total / pageSize)}
           onClick={() => onPageChange(currentPage + 1)}
         >
-          {ChevronRightIcon}
+          <ChevronRightIcon />
         </Button>
       </div>
     </div>
