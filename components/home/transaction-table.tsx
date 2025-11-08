@@ -10,6 +10,7 @@ import { AddTransactionModal } from "./add-transaction-modal";
 import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { TransactionColumns, type TTransaction, type TTransactionType } from "./transaction-columns";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { formatDate } from "@/utils/date-formatter";
 
 export function TransactionTable() {
     const [filter, setFilter] = useState<TTransactionType | undefined>(undefined);
@@ -33,7 +34,6 @@ export function TransactionTable() {
         sortDescFirst: true,
         manualPagination: true,
     });
-
     
     return (
         <div className="space-y-4">
@@ -65,7 +65,7 @@ export function TransactionTable() {
                             description: transaction.description,
                             amount: Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(transaction.amount),
                             type: transaction.type,
-                            createdAt: transaction.createdAt.toString(),
+                            createdAt: formatDate(transaction.createdAt),
                         }))}
                         disabled={filteredTransactions.length === 0}
                     >

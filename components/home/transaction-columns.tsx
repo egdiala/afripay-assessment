@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { formatDate } from "@/utils/date-formatter";
 import { ColumnDef } from "@tanstack/react-table";
 
 export type TTransactionType = "credit" | "debit";
@@ -56,7 +57,7 @@ export const TransactionColumns: ColumnDef<TTransaction>[] = [
     header: "Date",
     cell: (info) => {
       const date = new Date(info.getValue() as string);
-      return <span className="">{date.getDate()}-{date.getMonth() + 1}-{date.getFullYear()} {date.getHours()}:{date.getMinutes()}{date.getHours() > 12 ? "pm" : "am"}</span>;
+      return <span className="">{formatDate(date)}</span>;
     },
     enableSorting: true,
   }
