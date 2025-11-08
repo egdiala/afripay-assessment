@@ -50,8 +50,8 @@ export function AddTransactionModal() {
                     Add Transaction
                 </Button>
             </DialogTrigger>
-            <DialogContent>
-                <DialogHeader>
+            <DialogContent className="w-[94vw] rounded-xl sm:max-w-md">
+                <DialogHeader className="text-left">
                     <DialogTitle>Add Transaction</DialogTitle>
                     <DialogDescription>Add a new transaction to the database.</DialogDescription>
                 </DialogHeader>
@@ -90,7 +90,7 @@ export function AddTransactionModal() {
                         />
                     </div>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="gap-y-2">
                     <DialogClose asChild>
                         <Button variant="secondary">Cancel</Button>
                     </DialogClose>

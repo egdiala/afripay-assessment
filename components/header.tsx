@@ -23,7 +23,7 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <div className="sticky top-0 z-10 overflow-visible">
+    <div className="sticky top-0 z-10 overflow-visible bg-background">
       <header
         className={cn(
           "relative flex items-center px-5 py-5 transition-colors duration-200 ease-out md:px-6"

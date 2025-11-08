@@ -1,14 +1,15 @@
 "use client";
 
-import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import DataTable from "../tables/data-tables";
-import { TransactionColumns, type TTransaction, type TTransactionType } from "./transaction-columns";
 import { Button } from "../ui/button";
-import { ListFilter } from "lucide-react";
-import { AddTransactionModal } from "./add-transaction-modal";
-import { useTransactions } from "@/context/transaction";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useMemo, useState } from "react";
+import DataTable from "../tables/data-tables";
+import CsvDownloader from 'react-csv-downloader';
+import { useTransactions } from "@/context/transaction";
+import { FileSpreadsheet, ListFilter } from "lucide-react";
+import { AddTransactionModal } from "./add-transaction-modal";
+import { ColumnDef, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { TransactionColumns, type TTransaction, type TTransactionType } from "./transaction-columns";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 export function TransactionTable() {
     const [filter, setFilter] = useState<TTransactionType | undefined>(undefined);
@@ -56,7 +57,22 @@ export function TransactionTable() {
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
-                <AddTransactionModal />
+                <div className="flex items-center gap-2">
+                    <CsvDownloader filename="afripay_transactions_export.csv" datas={filteredTransactions.map((transaction) => ({
+                        id: transaction.id.toString(),
+                        description: transaction.description,
+                        amount: Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(transaction.amount),
+                        type: transaction.type,
+                        createdAt: transaction.createdAt.toString(),
+                    }))}>
+                   <Button variant="secondary">
+                        <FileSpreadsheet className="size-4" />
+                        Export
+                    </Button>
+
+                    </CsvDownloader>
+                   <AddTransactionModal />
+                </div>
             </div>
             <div className="grid border border-contrast-high-10 relative rounded-lg">
                 <DataTable

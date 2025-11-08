@@ -28,11 +28,11 @@ export const TransactionColumns: ColumnDef<TTransaction>[] = [
     accessorKey: "description",
     header: "Description",
     cell: (info) => {
-      return <span className="">{info.getValue() as string}</span>;
+      return <div className="text-left line-clamp-3 max-w-[550px] text-ellipsis">{info.getValue() as string}</div>;
     },
     enableSorting: false,
-    minSize: 550,
-    maxSize: 800,
+    minSize: 100,
+    maxSize: 550,
   },
   {
     accessorKey: "amount",
@@ -59,7 +59,5 @@ export const TransactionColumns: ColumnDef<TTransaction>[] = [
       return <span className="">{date.getDate()}-{date.getMonth() + 1}-{date.getFullYear()} {date.getHours()}:{date.getMinutes()}{date.getHours() > 12 ? "pm" : "am"}</span>;
     },
     enableSorting: true,
-    minSize: 40,
-    maxSize: 100,
   }
 ];
