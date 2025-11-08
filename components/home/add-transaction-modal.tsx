@@ -32,6 +32,9 @@ export function AddTransactionModal() {
     }
 
     const handleAddTransaction = () => {
+        if (!amount || !description || !type) {
+            return;
+        }
         setTransactions([...transactions, { id: transactions.length + 1, amount: Number(amount), description, type: type as TTransactionType, createdAt: new Date().toISOString() }]);
         setOpen(false);
     }
