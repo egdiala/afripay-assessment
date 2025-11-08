@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mini Transaction Dashboard",
   description: "Afripay Frontend Engineer assessment",
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  }
 };
 
 export default function RootLayout({
