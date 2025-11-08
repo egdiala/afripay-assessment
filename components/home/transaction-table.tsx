@@ -58,20 +58,23 @@ export function TransactionTable() {
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <div className="flex items-center gap-2">
-                    <CsvDownloader filename="afripay_transactions_export.csv" datas={filteredTransactions.map((transaction) => ({
-                        id: transaction.id.toString(),
-                        description: transaction.description,
-                        amount: Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(transaction.amount),
-                        type: transaction.type,
-                        createdAt: transaction.createdAt.toString(),
-                    }))}>
-                   <Button variant="secondary">
-                        <FileSpreadsheet className="size-4" />
-                        Export
-                    </Button>
-
+                    <CsvDownloader
+                        filename="afripay_transactions_export.csv"
+                        datas={filteredTransactions.map((transaction) => ({
+                            id: transaction.id.toString(),
+                            description: transaction.description,
+                            amount: Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN" }).format(transaction.amount),
+                            type: transaction.type,
+                            createdAt: transaction.createdAt.toString(),
+                        }))}
+                        disabled={filteredTransactions.length === 0}
+                    >
+                        <Button variant="secondary">
+                            <FileSpreadsheet className="size-4" />
+                            Export
+                        </Button>
                     </CsvDownloader>
-                   <AddTransactionModal />
+                    <AddTransactionModal />
                 </div>
             </div>
             <div className="grid border border-contrast-high-10 relative rounded-lg">
