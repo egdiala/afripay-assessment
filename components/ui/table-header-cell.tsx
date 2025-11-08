@@ -22,7 +22,7 @@ export default function HeaderCell<TData extends object>({
     <th
       onClick={isSortingEnabled ? getToggleSortingHandler() : undefined}
       className={cn(
-        "text-contrast-low text-base h-12 pr-5 first:px-5 text-left font-medium"
+        "text-contrast-low text-base h-12 pr-5 pl-2 first:px-5 text-left font-medium"
       )}
       style={{ width: `${getSize()}px` }}
     >

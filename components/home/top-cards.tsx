@@ -1,27 +1,37 @@
+"use client";
+
+import { useTransactions } from "@/context/transaction";
 import { CreditCardMinusIcon } from "../icons/credit-card-minus";
 import { CreditCardPlusIcon } from "../icons/credit-card-plus";
 import { Suitcase2Icon } from "../icons/suitcase-icon";
 import IconWrapper from "../ui/icon-wrapper";
 import NumberFlow from "@number-flow/react";
+import { useMemo } from "react";
 
 export function TopCards() {
-    const cards = [
-        {
-            title: "Total Balance",
-            icon: <Suitcase2Icon />,
-            value: 1000000,
-        },
-        {
-            title: "Total Inflow",
-            icon: <CreditCardPlusIcon />,
-            value: 10000,
-        },
-        {
-            title: "Total Outflow",
-            icon: <CreditCardMinusIcon />,
-            value: 1000,
-        }
-    ]
+    const { transactions } = useTransactions();
+    const totalInflow = transactions.filter((transaction) => transaction.type === "credit").reduce((acc, transaction) => acc + transaction.amount, 0);
+    const totalOutflow = transactions.filter((transaction) => transaction.type === "debit").reduce((acc, transaction) => acc + transaction.amount, 0);
+
+    const cards = useMemo(() => {
+        return [
+            {
+                title: "Total Balance",
+                icon: <Suitcase2Icon />,
+                value: totalInflow - totalOutflow,
+            },
+            {
+                title: "Total Inflow",
+                icon: <CreditCardPlusIcon />,
+                value: totalInflow,
+            },
+            {
+                title: "Total Outflow",
+                icon: <CreditCardMinusIcon />,
+                value: totalOutflow,
+            }
+        ]
+    },[totalInflow, totalOutflow])
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
