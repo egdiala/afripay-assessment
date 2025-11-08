@@ -17,7 +17,10 @@ export function AddTransactionModal() {
     const [type, setType] = useState<string>("");
 
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.target.value);
+        const targetValue = e.target.value;
+        if (/^\d*$/.test(targetValue)) {
+            setAmount(targetValue);
+        }
     }
 
     const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
